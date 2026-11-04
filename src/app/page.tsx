@@ -1,3 +1,4 @@
+import SkillsMatrix from "@/components/SkillsMatrix";
 
 const navigation = [
   { label: "About", href: "#about" },
@@ -92,9 +93,11 @@ export default function Home() {
                 Technical Competencies
               </h2>
               <p className="mt-4 max-w-2xl text-muted">
-                A practical overview of the languages, frameworks and tools
-                I use. A detailed competency matrix will appear here.
+                Technologies I&apos;ve worked with across academic and
+                independent software engineering projects.
               </p>
+
+              <SkillsMatrix />
             </div>
           </section>
 
