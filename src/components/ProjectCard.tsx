@@ -1,5 +1,6 @@
 
 import type { Project } from "@/data/projects";
+import Link from "next/link";
 
 type ProjectCardProps = {
     project: Project;
@@ -51,20 +52,35 @@ export default function ProjectCard({
             </ul>
 
             <div className="mt-auto pt-8">
-                {project.githubUrl ? (
-                    <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 font-semibold text-seafoam hover:underline"
-                    >
-                        View Source Code <span aria-hidden="true">↗</span>
-                    </a>
-                ) : (
-                    <span className="text-sm text-muted">
-            Project case study coming soon
-          </span>
-                )}
+
+                <div className="mt-auto flex flex-wrap gap-5 pt-8">
+                    {project.id === "tetris" && (
+                        <Link
+                            href="/projects/tetris"
+                            className="font-semibold text-seafoam hover:underline"
+                        >
+                            Read Case Study →
+                        </Link>
+                    )}
+
+                    {project.githubUrl && (
+                        <a
+                            href={project.githubUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="font-semibold text-seafoam hover:underline"
+                        >
+                            View Source Code ↗
+                        </a>
+                    )}
+
+                    {!project.githubUrl && project.id !== "tetris" && (
+                        <span className="text-sm text-muted">
+      Project case study coming soon
+    </span>
+                    )}
+                </div>
+
             </div>
         </article>
     );
