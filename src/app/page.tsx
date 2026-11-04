@@ -1,4 +1,6 @@
 import SkillsMatrix from "@/components/SkillsMatrix";
+import ProjectCard from "@/components/ProjectCard";
+import { projects } from "@/data/projects";
 
 const navigation = [
   { label: "About", href: "#about" },
@@ -110,9 +112,15 @@ export default function Home() {
                 Featured Engineering Projects
               </h2>
               <p className="mt-4 max-w-2xl text-muted">
-                Case studies, technical decisions and links to working code
-                will appear here.
+                Selected projects demonstrating application development,
+                algorithm design and collaborative engineering.
               </p>
+
+              <div className="mt-10 grid grid-cols-1 gap-6 lg:grid-cols-3">
+                {projects.map((project) => (
+                    <ProjectCard key={project.id} project={project} />
+                ))}
+              </div>
             </div>
           </section>
 
