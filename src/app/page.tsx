@@ -131,7 +131,7 @@ export default function Home() {
         <footer className="border-t border-white/10 px-6 py-8">
           <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4">
             <p className="text-sm text-muted">
-              © {new Date().getFullYear()} Erin Green
+              © 2026 Erin Green
             </p>
             <a
                 href="https://github.com/ErinGreen5327955"
