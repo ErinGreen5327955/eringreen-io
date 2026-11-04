@@ -1,69 +1,148 @@
-import Image from "next/image";
+
+const navigation = [
+  { label: "About", href: "#about" },
+  { label: "Projects", href: "#projects" },
+  { label: "Contact", href: "mailto:hello@eringreen.io" },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+      <div className="min-h-screen bg-background text-foreground">
+        <header className="border-b border-white/10">
+          <nav
+              aria-label="Main navigation"
+              className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5"
           >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
+            <a
+                href="#home"
+                className="text-xl font-bold tracking-tight text-seafoam"
+            >
+              EG.
+            </a>
+
+            <div className="flex items-center gap-5 sm:gap-8">
+              {navigation.map((item) => (
+                  <a
+                      key={item.label}
+                      href={item.href}
+                      className="text-sm text-muted transition-colors hover:text-seafoam"
+                  >
+                    {item.label}
+                  </a>
+              ))}
+            </div>
+          </nav>
+        </header>
+
+        <main id="home">
+          <section className="relative mx-auto flex min-h-[75vh] max-w-6xl flex-col justify-center px-6 py-24">
+            <div
+                aria-hidden="true"
+                className="pointer-events-none absolute right-0 top-16 -z-0 h-80 w-80 rounded-full bg-botanical-teal/20 blur-3xl"
             />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+
+            <div className="relative z-10 max-w-3xl">
+              <p className="mb-6 text-sm font-semibold uppercase tracking-[0.25em] text-seafoam">
+                Software Engineering Portfolio
+              </p>
+
+              <h1 className="text-6xl font-bold tracking-tight sm:text-7xl lg:text-8xl">
+                Erin Green<span className="text-seafoam">.</span>
+              </h1>
+
+              <h2 className="mt-8 max-w-2xl text-2xl font-medium leading-snug text-seafoam sm:text-3xl">
+                Building thoughtful software for complex problems.
+              </h2>
+
+              <p className="mt-6 max-w-xl text-base leading-8 text-muted sm:text-lg">
+                Computer Science graduate building practical, secure and
+                user-focused applications. Interested in full-stack engineering,
+                data-driven interfaces and solving meaningful problems.
+              </p>
+
+              <div className="mt-10 flex flex-wrap gap-4">
+                <a
+                    href="#projects"
+                    className="rounded-lg bg-seafoam px-6 py-3 font-semibold text-forest transition-colors hover:bg-soft-mist"
+                >
+                  Explore My Work
+                </a>
+
+                <a
+                    href="https://github.com/ErinGreen5327955"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-lg border border-seafoam/40 px-6 py-3 font-semibold text-seafoam transition-colors hover:bg-seafoam/10"
+                >
+                  View GitHub
+                </a>
+              </div>
+            </div>
+          </section>
+
+          <section
+              id="skills"
+              className="border-t border-white/10 bg-forest-teal/30 px-6 py-20"
           >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+            <div className="mx-auto max-w-6xl">
+              <p className="text-sm uppercase tracking-widest text-seafoam">
+                Technical Expertise
+              </p>
+              <h2 className="mt-3 text-3xl font-bold">
+                Technical Competencies
+              </h2>
+              <p className="mt-4 max-w-2xl text-muted">
+                A practical overview of the languages, frameworks and tools
+                I use. A detailed competency matrix will appear here.
+              </p>
+            </div>
+          </section>
+
+          <section id="projects" className="px-6 py-20">
+            <div className="mx-auto max-w-6xl">
+              <p className="text-sm uppercase tracking-widest text-seafoam">
+                Selected Work
+              </p>
+              <h2 className="mt-3 text-3xl font-bold">
+                Featured Engineering Projects
+              </h2>
+              <p className="mt-4 max-w-2xl text-muted">
+                Case studies, technical decisions and links to working code
+                will appear here.
+              </p>
+            </div>
+          </section>
+
+          <section
+              id="about"
+              className="border-t border-white/10 bg-forest-teal/30 px-6 py-20"
+          >
+            <div className="mx-auto max-w-6xl">
+              <h2 className="text-3xl font-bold">About Me</h2>
+              <p className="mt-4 max-w-2xl text-muted">
+                My background combines software engineering study with
+                experience in analytical problem-solving, leadership and
+                complex operational environments.
+              </p>
+            </div>
+          </section>
+        </main>
+
+        <footer className="border-t border-white/10 px-6 py-8">
+          <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4">
+            <p className="text-sm text-muted">
+              © {new Date().getFullYear()} Erin Green
+            </p>
+            <a
+                href="https://github.com/ErinGreen5327955"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sm text-seafoam hover:underline"
+            >
+              GitHub
+            </a>
+          </div>
+        </footer>
+      </div>
   );
 }
