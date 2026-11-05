@@ -1,4 +1,4 @@
-
+import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 
@@ -7,6 +7,35 @@ export const metadata: Metadata = {
     description:
         "A JavaFX Tetris project featuring a custom game engine, collision detection, rotation, row clearing and automated testing.",
 };
+
+const screenshots = [
+    {
+        src: "/images/projects/tetris/gameplay.png",
+        title: "Single-Player Gameplay",
+        description: "Game board, scoring, levels and game-over handling.",
+    },
+    {
+        src: "/images/projects/tetris/multiplayer-ai.png",
+        title: "Human vs AI",
+        description: "Separate game states for human and AI players.",
+    },
+    {
+        src: "/images/projects/tetris/configuration.png",
+        title: "Game Configuration",
+        description: "Adjustable board dimensions, difficulty and player settings.",
+    },
+    {
+        src: "/images/projects/tetris/multiplayer-external.png",
+        title: "External Player Mode",
+        description: "Multiplayer interface showing a disconnected external server.",
+    },
+    {
+        src: "/images/projects/tetris/high-scores.png",
+        title: "High Scores",
+        description: "Leaderboard displaying saved scores and starting levels.",
+    },
+];
+
 
 const contributions = [
     "Designed and implemented the Java game engine",
@@ -99,6 +128,55 @@ export default function TetrisProjectPage() {
                             ))}
                         </ul>
                     </section>
+
+
+                    <section>
+                        <h2 className="text-2xl font-bold text-soft-mist">
+                            Application Gallery
+                        </h2>
+
+                        <p className="mt-5 leading-8 text-muted">
+                            Screenshots from the completed application, showing
+                            gameplay, multiplayer modes, configuration and scoring.
+                            The interface was developed collaboratively, with my
+                            primary responsibility focused on the gameplay engine.
+                        </p>
+
+                        <div className="mt-8 grid gap-6 sm:grid-cols-2">
+                            {screenshots.map((screenshot, index) => (
+                                <figure
+                                    key={screenshot.src}
+                                    className={`overflow-hidden rounded-xl border border-seafoam/20 bg-forest-teal/30 ${
+                                        index === 0 ? "sm:col-span-2" : ""
+                                    }`}
+                                >
+                                    <div className="relative h-72 bg-forest sm:h-80">
+                                        <Image
+                                            src={screenshot.src}
+                                            alt={screenshot.title}
+                                            fill
+                                            sizes={
+                                                index === 0
+                                                    ? "(max-width: 640px) 100vw, 900px"
+                                                    : "(max-width: 640px) 100vw, 450px"
+                                            }
+                                            className="object-contain"
+                                        />
+                                    </div>
+
+                                    <figcaption className="border-t border-seafoam/15 p-5">
+                                        <h3 className="font-semibold text-soft-mist">
+                                            {screenshot.title}
+                                        </h3>
+                                        <p className="mt-2 text-sm leading-6 text-muted">
+                                            {screenshot.description}
+                                        </p>
+                                    </figcaption>
+                                </figure>
+                            ))}
+                        </div>
+                    </section>
+
 
                     <section>
                         <h2 className="text-2xl font-bold text-soft-mist">
