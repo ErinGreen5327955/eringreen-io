@@ -178,23 +178,105 @@ export default function TetrisProjectPage() {
                     </section>
 
 
+
                     <section>
                         <h2 className="text-2xl font-bold text-soft-mist">
-                            Technical Implementation
+                            Technical Architecture
                         </h2>
+
                         <p className="mt-5 leading-8 text-muted">
-                            The engine manages the game board, tetromino
-                            positioning, movement validation, collision detection
-                            and piece locking. It also detects completed rows
-                            and determines when gameplay should end.
+                            The application uses an object-oriented architecture that
+                            separates game-state management, gameplay rules and
+                            presentation. The Game class coordinates the active
+                            tetromino, board state, scoring, row clearing and piece
+                            generation through specialised components.
                         </p>
-                        <p className="mt-4 leading-8 text-muted">
-                            The JavaFX interface presents the game state and
-                            handles user interaction. Separating gameplay logic
-                            from presentation helped support testing and
-                            integration between team members.
-                        </p>
+
+                        <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                            <div className="rounded-xl border border-seafoam/20 bg-forest-teal/30 p-6">
+                                <h3 className="font-semibold text-seafoam">
+                                    Game State
+                                </h3>
+                                <p className="mt-3 text-sm leading-7 text-muted">
+                                    Game, Board and ActivePiece represent the current
+                                    gameplay state, including occupied cells and
+                                    the active tetromino.
+                                </p>
+                            </div>
+
+                            <div className="rounded-xl border border-seafoam/20 bg-forest-teal/30 p-6">
+                                <h3 className="font-semibold text-seafoam">
+                                    Movement & Collision
+                                </h3>
+                                <p className="mt-3 text-sm leading-7 text-muted">
+                                    MovementService and RotationService encapsulate
+                                    piece behaviour. PieceCollisionChecker validates
+                                    proposed positions against board boundaries
+                                    and occupied cells.
+                                </p>
+                            </div>
+
+                            <div className="rounded-xl border border-seafoam/20 bg-forest-teal/30 p-6">
+                                <h3 className="font-semibold text-seafoam">
+                                    Gameplay Rules
+                                </h3>
+                                <p className="mt-3 text-sm leading-7 text-muted">
+                                    Dedicated services handle scoring, completed-row
+                                    clearing and tetromino generation, keeping these
+                                    responsibilities separate from the main game model.
+                                </p>
+                            </div>
+
+                            <div className="rounded-xl border border-seafoam/20 bg-forest-teal/30 p-6">
+                                <h3 className="font-semibold text-seafoam">
+                                    Testable Design
+                                </h3>
+                                <p className="mt-3 text-sm leading-7 text-muted">
+                                    Service interfaces and injectable dependencies
+                                    allow gameplay behaviour to be tested with
+                                    controlled implementations rather than relying
+                                    on the graphical interface.
+                                </p>
+                            </div>
+                        </div>
+
+                        <div className="mt-8 rounded-xl border border-seafoam/20 p-6">
+                            <h3 className="font-semibold text-soft-mist">
+                                Example: Collision Validation
+                            </h3>
+
+                            <p className="mt-3 leading-7 text-muted">
+                                PieceCollisionChecker.canOccupy() examines each
+                                block position in a proposed tetromino placement.
+                                It rejects positions outside the board or
+                                overlapping an occupied cell.
+                            </p>
+
+                            <pre className="mt-5 overflow-x-auto rounded-lg bg-forest p-5 text-sm leading-7 text-seafoam">
+      <code>{`for (Position position : activePiece.getBoardPositions()) {
+    int column = position.getColumn();
+    int row = position.getRow();
+
+    if (!board.isInside(column, row)) {
+        return false;
+    }
+
+    if (board.isOccupied(column, row)) {
+        return false;
+    }
+}
+
+return true;`}</code>
+    </pre>
+
+                            <p className="mt-4 text-sm leading-7 text-muted">
+                                This centralises placement validation so that
+                                movement and rotation can apply consistent
+                                rules when checking proposed positions.
+                            </p>
+                        </div>
                     </section>
+
 
                     <section>
                         <h2 className="text-2xl font-bold text-soft-mist">
