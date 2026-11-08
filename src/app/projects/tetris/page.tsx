@@ -75,11 +75,23 @@ export default function TetrisProjectPage() {
                         JavaFX Tetris
                     </h1>
 
+
                     <p className="mt-6 max-w-3xl text-lg leading-8 text-muted">
-                        A desktop Tetris application developed collaboratively,
-                        combining a custom Java game engine with a JavaFX
-                        graphical interface.
+                        A Java desktop game developed by a two-person team,
+                        featuring a custom object-oriented game engine,
+                        configurable gameplay, AI opponents and multiplayer
+                        functionality.
                     </p>
+
+                    <p className="mt-4 max-w-3xl leading-8 text-soft-mist">
+  <span className="font-semibold text-seafoam">
+    My role:
+  </span>{" "}
+                        Gameplay and Architecture Lead — responsible for the
+                        core game engine, movement and collision systems,
+                        gameplay rules, integration and automated testing.
+                    </p>
+
 
                     <div className="mt-8 flex flex-wrap gap-2">
                         {technologies.map((technology) => (
@@ -110,11 +122,23 @@ export default function TetrisProjectPage() {
                         <h2 className="text-2xl font-bold text-soft-mist">
                             My Contribution
                         </h2>
+
                         <p className="mt-5 leading-8 text-muted">
-                            Working as part of a two-person development team,
-                            I was primarily responsible for implementing the
-                            underlying game engine and its behaviour.
+                            This was a collaborative project completed by a
+                            two-person development team. I led development of
+                            the gameplay engine, including board state,
+                            tetromino movement and rotation, collision
+                            detection, piece locking, row clearing and
+                            game-over behaviour.
                         </p>
+
+                        <p className="mt-4 leading-8 text-muted">
+                            My teammate, Andrea, led the JavaFX interface,
+                            visual design, menus and configuration screens.
+                            We integrated these components into a complete
+                            desktop application using Git and automated tests.
+                        </p>
+
 
                         <ul className="mt-6 grid gap-3 sm:grid-cols-2">
                             {contributions.map((contribution) => (
