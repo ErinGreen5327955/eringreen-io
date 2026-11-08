@@ -3,6 +3,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import ConvexHullDiagram from "@/components/ConvexHullDiagram";
 import SaxPipeline from "@/components/SaxPipeline";
+import SaxWorkedExample from "@/components/SaxWorkedExample";
 
 export const metadata: Metadata = {
     title: "Algorithms, Data Structures & Optimisation | Erin Green",
@@ -345,6 +346,24 @@ export default function AlgorithmsProjectPage() {
                             </p>
                         </div>
                     </section>
+
+
+                    <section>
+                        <h2 className="text-2xl font-bold text-soft-mist">
+                            SAX Transformation — Worked Example
+                        </h2>
+
+                        <p className="mt-5 leading-8 text-muted">
+                            This simplified example demonstrates how numerical
+                            time-series values are transformed into a compact
+                            symbolic representation.
+                        </p>
+
+                        <div className="mt-8">
+                            <SaxWorkedExample />
+                        </div>
+                    </section>
+
 
                     <section>
                         <h2 className="text-2xl font-bold text-soft-mist">
