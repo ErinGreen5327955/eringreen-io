@@ -291,17 +291,120 @@ return true;`}</code>
                         </p>
                     </section>
 
+
                     <section>
                         <h2 className="text-2xl font-bold text-soft-mist">
                             Testing & Verification
                         </h2>
+
                         <p className="mt-5 leading-8 text-muted">
-                            Development included automated tests and integration
-                            checks covering gameplay behaviour. The next
-                            iteration of this case study will link to specific
-                            test cases and implementation evidence.
+                            The game engine was verified using automated JUnit
+                            tests covering gameplay state, movement, collision
+                            detection, row clearing and edge cases. Tests were
+                            designed to exercise gameplay rules independently
+                            of the JavaFX interface.
                         </p>
+
+                        <div className="mt-8 grid gap-4 sm:grid-cols-3">
+                            {[
+                                { count: "46", label: "Game tests" },
+                                { count: "11", label: "Collision tests" },
+                                { count: "7", label: "Movement tests" },
+                            ].map((result) => (
+                                <div
+                                    key={result.label}
+                                    className="rounded-xl border border-seafoam/20 bg-forest-teal/30 p-6"
+                                >
+                                    <p className="text-4xl font-bold text-seafoam">
+                                        {result.count}
+                                    </p>
+                                    <p className="mt-2 text-sm text-muted">
+                                        {result.label}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+
+                        <p className="mt-3 text-sm text-muted">
+                            All 64 tests passed across these three suites in the
+                            saved Maven test results.
+                        </p>
+
+                        <h3 className="mt-10 text-lg font-semibold text-soft-mist">
+                            Key Testing Scenarios
+                        </h3>
+
+                        <div className="mt-5 space-y-4">
+                            {[
+                                {
+                                    title: "Boundary and Collision Handling",
+                                    description:
+                                        "Verified that pieces cannot move beyond board boundaries or overlap occupied cells, while valid edge positions remain permitted.",
+                                },
+                                {
+                                    title: "Piece Locking and Game State",
+                                    description:
+                                        "Tested piece locking, next-piece generation, automatic downward movement and game-over conditions.",
+                                },
+                                {
+                                    title: "Row Clearing and Colour Preservation",
+                                    description:
+                                        "Verified single and multiple row clearing, correct shifting of remaining rows and preservation of block colours.",
+                                },
+                                {
+                                    title: "Scoring and Level Progression",
+                                    description:
+                                        "Tested initial scores, cleared-line tracking, level progression and the maximum level constraint.",
+                                },
+                                {
+                                    title: "Invalid Inputs and Edge Cases",
+                                    description:
+                                        "Tested null dependency rejection, invalid initial levels and blocked movement scenarios.",
+                                },
+                            ].map((scenario) => (
+                                <div
+                                    key={scenario.title}
+                                    className="rounded-lg border border-seafoam/15 bg-forest-teal/30 p-5"
+                                >
+                                    <h4 className="font-semibold text-seafoam">
+                                        {scenario.title}
+                                    </h4>
+                                    <p className="mt-2 text-sm leading-7 text-muted">
+                                        {scenario.description}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+
+                        <div className="mt-8 rounded-xl border border-seafoam/20 p-6">
+                            <h3 className="font-semibold text-soft-mist">
+                                Example: Collision Test Coverage
+                            </h3>
+
+                            <p className="mt-3 leading-7 text-muted">
+                                The collision test suite checks both invalid
+                                placements and valid boundary conditions.
+                                For example, a tetromino touching the right
+                                boundary is permitted, while a placement
+                                extending beyond it is rejected.
+                            </p>
+
+                            <div className="mt-5 overflow-x-auto rounded-lg bg-forest p-5">
+      <pre className="text-sm leading-7 text-seafoam">
+        <code>{`canOccupyReturnsFalseWhenPieceIsOutsideRightBoundary
+canOccupyReturnsTrueWhenPieceTouchesRightBoundary
+canOccupyReturnsFalseWhenPieceOverlapsOccupiedCell
+canOccupyChecksEveryBlockForOccupiedCellCollision`}</code>
+      </pre>
+                            </div>
+
+                            <p className="mt-4 text-sm leading-7 text-muted">
+                                These are test method names from the project&apos;s
+                                PieceCollisionCheckerTest class.
+                            </p>
+                        </div>
                     </section>
+
 
                     <section className="rounded-xl border border-seafoam/20 bg-forest-teal/30 p-8">
                         <h2 className="text-2xl font-bold text-soft-mist">
