@@ -102,6 +102,39 @@ export default function AlgorithmsProjectPage() {
                     </div>
                 </header>
 
+
+                <nav
+                    aria-label="Case study sections"
+                    className="mt-10 rounded-xl border border-seafoam/20 bg-forest-teal/30 p-6"
+                >
+                    <h2 className="text-lg font-semibold text-soft-mist">
+                        Explore This Case Study
+                    </h2>
+
+                    <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                        {[
+                            { label: "Implementations", href: "#implementations" },
+                            { label: "Complexity & Trade-offs", href: "#complexity" },
+                            { label: "Convex Hull", href: "#convex-hull" },
+                            { label: "SAX Pipeline", href: "#sax-pipeline" },
+                            { label: "SAX Worked Example", href: "#sax-example" },
+                            { label: "Testing & Verification", href: "#testing" },
+                        ].map((item) => (
+                            <a
+                                key={item.href}
+                                href={item.href}
+                                className="flex items-center justify-between rounded-lg border border-seafoam/15 bg-forest px-4 py-3 text-sm font-medium text-soft-mist transition-colors hover:border-seafoam/40 hover:text-seafoam"
+                            >
+                                <span>{item.label}</span>
+                                <span aria-hidden="true" className="ml-3 text-seafoam">
+          ↗
+        </span>
+                            </a>
+                        ))}
+                    </div>
+                </nav>
+
+
                 <div className="space-y-16 py-16">
                     <section>
                         <h2 className="text-2xl font-bold text-soft-mist">
@@ -126,7 +159,7 @@ export default function AlgorithmsProjectPage() {
                         </p>
                     </section>
 
-                    <section>
+                    <section id="implementations">
                         <h2 className="text-2xl font-bold text-soft-mist">
                             Implementations
                         </h2>
@@ -177,7 +210,7 @@ export default function AlgorithmsProjectPage() {
                     </section>
 
 
-                    <section>
+                    <section id="complexity">
                         <h2 className="text-2xl font-bold text-soft-mist">
                             Algorithm Complexity & Trade-offs
                         </h2>
@@ -264,7 +297,7 @@ export default function AlgorithmsProjectPage() {
                     </section>
 
 
-                    <section>
+                    <section id="convex-hull">
                         <h2 className="text-2xl font-bold text-soft-mist">
                             Visualising Computational Geometry
                         </h2>
@@ -307,7 +340,7 @@ export default function AlgorithmsProjectPage() {
                     </section>
 
 
-                    <section>
+                    <section id="sax-pipeline">
                         <h2 className="text-2xl font-bold text-soft-mist">
                             From Voice Signals to Symbolic Sequences
                         </h2>
@@ -348,7 +381,7 @@ export default function AlgorithmsProjectPage() {
                     </section>
 
 
-                    <section>
+                    <section id="sax-example">
                         <h2 className="text-2xl font-bold text-soft-mist">
                             SAX Transformation — Worked Example
                         </h2>
@@ -386,7 +419,7 @@ export default function AlgorithmsProjectPage() {
                     </section>
 
 
-                    <section>
+                    <section id="testing">
                         <h2 className="text-2xl font-bold text-soft-mist">
                             Testing & Verification
                         </h2>
