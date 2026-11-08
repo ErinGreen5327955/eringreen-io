@@ -1,6 +1,7 @@
 
 import Link from "next/link";
 import type { Metadata } from "next";
+import ConvexHullDiagram from "@/components/ConvexHullDiagram";
 
 export const metadata: Metadata = {
     title: "Algorithms, Data Structures & Optimisation | Erin Green",
@@ -170,6 +171,136 @@ export default function AlgorithmsProjectPage() {
                                     </div>
                                 </article>
                             ))}
+                        </div>
+                    </section>
+
+
+                    <section>
+                        <h2 className="text-2xl font-bold text-soft-mist">
+                            Algorithm Complexity & Trade-offs
+                        </h2>
+
+                        <p className="mt-5 leading-8 text-muted">
+                            Algorithm selection involves balancing performance,
+                            implementation complexity and input characteristics.
+                            These examples illustrate how different approaches
+                            solve related problems with different trade-offs.
+                        </p>
+
+                        <div className="mt-8 overflow-x-auto rounded-xl border border-seafoam/20">
+                            <table className="w-full min-w-[650px] text-left text-sm">
+                                <thead className="bg-forest-teal text-seafoam">
+                                <tr>
+                                    <th className="p-4 font-semibold">Algorithm</th>
+                                    <th className="p-4 font-semibold">Time Complexity</th>
+                                    <th className="p-4 font-semibold">Key Trade-off</th>
+                                </tr>
+                                </thead>
+
+                                <tbody className="divide-y divide-seafoam/15 text-muted">
+                                <tr>
+                                    <td className="p-4 font-medium text-soft-mist">
+                                        Dijkstra + Fibonacci Heap
+                                    </td>
+                                    <td className="p-4 font-mono">
+                                        O(E + V log V)
+                                    </td>
+                                    <td className="p-4">
+                                        Strong amortised bounds, but a more
+                                        complex priority queue implementation.
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td className="p-4 font-medium text-soft-mist">
+                                        B-Tree Search
+                                    </td>
+                                    <td className="p-4 font-mono">
+                                        O(log n) node visits
+                                    </td>
+                                    <td className="p-4">
+                                        High branching factor reduces tree
+                                        height; work within nodes also matters.
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td className="p-4 font-medium text-soft-mist">
+                                        Jarvis March
+                                    </td>
+                                    <td className="p-4 font-mono">
+                                        O(nh)
+                                    </td>
+                                    <td className="p-4">
+                                        Output-sensitive performance, useful
+                                        when the hull contains few points.
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td className="p-4 font-medium text-soft-mist">
+                                        Graham Scan
+                                    </td>
+                                    <td className="p-4 font-mono">
+                                        O(n log n)
+                                    </td>
+                                    <td className="p-4">
+                                        Predictable asymptotic performance,
+                                        with sorting as the dominant step.
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <p className="mt-4 text-xs leading-6 text-muted">
+                            V = vertices, E = edges, n = input elements,
+                            h = convex hull vertices. Complexity bounds
+                            describe the algorithms rather than measured
+                            execution times.
+                        </p>
+                    </section>
+
+
+                    <section>
+                        <h2 className="text-2xl font-bold text-soft-mist">
+                            Visualising Computational Geometry
+                        </h2>
+
+                        <p className="mt-5 leading-8 text-muted">
+                            Jarvis March and Graham Scan solve the same
+                            convex hull problem using different strategies.
+                            Both identify the outermost vertices of a point
+                            set, but differ in how they construct the boundary.
+                        </p>
+
+                        <div className="mt-8">
+                            <ConvexHullDiagram />
+                        </div>
+
+                        <div className="mt-6 grid gap-4 sm:grid-cols-2">
+                            <div className="rounded-xl border border-seafoam/20 bg-forest-teal/30 p-6">
+                                <h3 className="font-semibold text-seafoam">
+                                    Jarvis March
+                                </h3>
+                                <p className="mt-3 text-sm leading-7 text-muted">
+                                    Builds the hull one vertex at a time by
+                                    selecting the next outermost point using
+                                    orientation comparisons. Its running time
+                                    depends on the number of hull vertices.
+                                </p>
+                            </div>
+
+                            <div className="rounded-xl border border-seafoam/20 bg-forest-teal/30 p-6">
+                                <h3 className="font-semibold text-seafoam">
+                                    Graham Scan
+                                </h3>
+                                <p className="mt-3 text-sm leading-7 text-muted">
+                                    Sorts points by polar angle, then processes
+                                    them using a stack. Orientation tests remove
+                                    points that would introduce an incorrect turn.
+                                </p>
+                            </div>
                         </div>
                     </section>
 
