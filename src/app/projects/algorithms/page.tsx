@@ -385,26 +385,125 @@ export default function AlgorithmsProjectPage() {
                         </p>
                     </section>
 
+
                     <section>
                         <h2 className="text-2xl font-bold text-soft-mist">
                             Testing & Verification
                         </h2>
 
                         <p className="mt-5 leading-8 text-muted">
-                            The project includes six JUnit test classes
-                            covering the five problem areas. Tests
-                            exercise expected behaviour and selected
-                            edge cases, including operations on
-                            custom data structures.
+                            The project uses JUnit to verify algorithm correctness,
+                            data structure invariants, boundary conditions and
+                            invalid inputs. Six test classes contain 61 tests
+                            across the five problem areas.
                         </p>
 
-                        <p className="mt-4 leading-8 text-muted">
-                            A successful development run reported
-                            61 tests passing. Subsequent sections
-                            will examine specific test scenarios
-                            and implementation decisions.
+                        <div className="mt-8 grid gap-4 sm:grid-cols-3">
+                            {[
+                                { value: "61", label: "JUnit tests" },
+                                { value: "6", label: "Test classes" },
+                                { value: "5", label: "Problem areas" },
+                            ].map((stat) => (
+                                <div
+                                    key={stat.label}
+                                    className="rounded-xl border border-seafoam/20 bg-forest-teal/30 p-6"
+                                >
+                                    <p className="text-4xl font-bold text-seafoam">
+                                        {stat.value}
+                                    </p>
+                                    <p className="mt-2 text-sm text-muted">
+                                        {stat.label}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+
+                        <p className="mt-3 text-sm text-muted">
+                            All 61 tests passed in the recorded development
+                            Maven test run.
                         </p>
+
+                        <h3 className="mt-10 text-lg font-semibold text-soft-mist">
+                            Key Testing Strategies
+                        </h3>
+
+                        <div className="mt-5 grid gap-4 sm:grid-cols-2">
+                            {[
+                                {
+                                    title: "Algorithm Agreement",
+                                    description:
+                                        "Compared Jarvis March and Graham Scan results, including hull perimeter. Also verified that dynamic and linear programming produced equivalent optimal solutions.",
+                                },
+                                {
+                                    title: "Data Structure Invariants",
+                                    description:
+                                        "Tested B-tree insertion, deletion, sorted traversal and duplicate handling. Verified Fibonacci heap minimum extraction and decrease-key behaviour.",
+                                },
+                                {
+                                    title: "Boundary Conditions",
+                                    description:
+                                        "Covered unreachable graph vertices, collinear points, insufficient input points, zero budgets and constant time-series data.",
+                                },
+                                {
+                                    title: "Input Validation",
+                                    description:
+                                        "Verified rejection of negative edge weights, invalid B-tree degrees, invalid budget values and unsupported heap operations.",
+                                },
+                                {
+                                    title: "Similarity Thresholds",
+                                    description:
+                                        "Tested identical and different symbolic sequences, including the exact 75% similarity boundary.",
+                                },
+                                {
+                                    title: "Expected Results",
+                                    description:
+                                        "Checked shortest-path distances, LCS lengths, PAA averages, SAX breakpoints and known convex hull outputs.",
+                                },
+                            ].map((strategy) => (
+                                <article
+                                    key={strategy.title}
+                                    className="rounded-xl border border-seafoam/20 bg-forest-teal/30 p-6"
+                                >
+                                    <h4 className="font-semibold text-seafoam">
+                                        {strategy.title}
+                                    </h4>
+                                    <p className="mt-3 text-sm leading-7 text-muted">
+                                        {strategy.description}
+                                    </p>
+                                </article>
+                            ))}
+                        </div>
+
+                        <div className="mt-8 rounded-xl border border-seafoam/20 p-6">
+                            <h3 className="font-semibold text-soft-mist">
+                                Example: Differential Testing
+                            </h3>
+
+                            <p className="mt-3 leading-7 text-muted">
+                                Two independently implemented convex hull
+                                algorithms were tested against the same
+                                input data. Their resulting hulls and
+                                perimeters were compared for consistency.
+                            </p>
+
+                            <div className="mt-5 overflow-x-auto rounded-lg bg-forest p-5">
+      <pre className="text-sm leading-7 text-seafoam">
+        <code>{`algorithmsAgreeOnIrregularHull
+algorithmsProduceSamePerimeter
+algorithmsProduceEquivalentOptimum`}</code>
+      </pre>
+                            </div>
+
+                            <p className="mt-4 text-sm leading-7 text-muted">
+                                These are actual JUnit test method names from
+                                Problem5Test and Problem4Test. Comparing
+                                independent implementations helps detect
+                                discrepancies that may not be obvious from
+                                testing either algorithm in isolation.
+                            </p>
+                        </div>
                     </section>
+
                 </div>
             </div>
         </main>
