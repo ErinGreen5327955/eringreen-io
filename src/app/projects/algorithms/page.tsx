@@ -2,6 +2,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import ConvexHullDiagram from "@/components/ConvexHullDiagram";
+import SaxPipeline from "@/components/SaxPipeline";
 
 export const metadata: Metadata = {
     title: "Algorithms, Data Structures & Optimisation | Erin Green",
@@ -301,6 +302,47 @@ export default function AlgorithmsProjectPage() {
                                     points that would introduce an incorrect turn.
                                 </p>
                             </div>
+                        </div>
+                    </section>
+
+
+                    <section>
+                        <h2 className="text-2xl font-bold text-soft-mist">
+                            From Voice Signals to Symbolic Sequences
+                        </h2>
+
+                        <p className="mt-5 leading-8 text-muted">
+                            The voice similarity implementation uses a
+                            multi-stage processing pipeline to convert
+                            numerical time-series data into symbolic
+                            representations.
+                        </p>
+
+                        <p className="mt-4 leading-8 text-muted">
+                            Each stage addresses a different challenge:
+                            normalisation reduces differences in scale,
+                            PAA compresses the data, SAX creates a symbolic
+                            representation, and LCS compares the resulting
+                            sequences.
+                        </p>
+
+                        <div className="mt-8">
+                            <SaxPipeline />
+                        </div>
+
+                        <div className="mt-6 rounded-xl border border-seafoam/20 bg-forest-teal/30 p-6">
+                            <h3 className="font-semibold text-seafoam">
+                                Engineering Insight
+                            </h3>
+
+                            <p className="mt-3 text-sm leading-7 text-muted">
+                                Rather than comparing every raw data point
+                                directly, the pipeline reduces the signal
+                                into a sequence of symbols. This separates
+                                signal representation from similarity
+                                calculation and makes each processing stage
+                                easier to test independently.
+                            </p>
                         </div>
                     </section>
 
