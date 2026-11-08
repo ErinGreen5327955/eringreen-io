@@ -54,14 +54,16 @@ export default function ProjectCard({
             <div className="mt-auto pt-8">
 
                 <div className="mt-auto flex flex-wrap gap-5 pt-8">
-                    {project.id === "tetris" && (
+                    {(project.id === "tetris" ||
+                        project.id === "algorithms") && (
                         <Link
-                            href="/projects/tetris"
+                            href={`/projects/${project.id}`}
                             className="font-semibold text-seafoam hover:underline"
                         >
                             Read Case Study →
                         </Link>
                     )}
+
 
                     {project.githubUrl && (
                         <a
@@ -74,11 +76,15 @@ export default function ProjectCard({
                         </a>
                     )}
 
-                    {!project.githubUrl && project.id !== "tetris" && (
-                        <span className="text-sm text-muted">
+
+                    {!project.githubUrl &&
+                        project.id !== "tetris" &&
+                        project.id !== "algorithms" && (
+                            <span className="text-sm text-muted">
       Project case study coming soon
     </span>
-                    )}
+                        )}
+
                 </div>
 
             </div>

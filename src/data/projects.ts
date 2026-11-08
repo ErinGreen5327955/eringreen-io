@@ -30,9 +30,11 @@ export const projects: Project[] = [
             "A collection of Java implementations exploring algorithmic problem-solving, similarity analysis and optimisation.",
         technologies: ["Java", "Maven", "JUnit", "ojAlgo"],
         highlights: [
-            "Implemented SAX-based voice similarity analysis",
-            "Developed Jarvis March and Graham Scan convex hull algorithms",
-            "Modelled a constrained optimisation problem using ojAlgo",
+            "Implemented Dijkstra's algorithm using a Fibonacci heap",
+            "Developed a B-tree supporting search, insertion and deletion",
+            "Built SAX-based voice similarity analysis using LCS",
+            "Modelled constrained optimisation using dynamic and linear programming",
+            "Implemented Jarvis March and Graham Scan convex hull algorithms",
         ],
     },
     {
