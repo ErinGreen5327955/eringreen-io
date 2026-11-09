@@ -162,6 +162,121 @@ export default function FakeStoreProjectPage() {
                             <FakeStoreArchitecture />
                         </div>
                     </section>
+
+
+                    <section>
+                        <h2 className="text-2xl font-bold text-soft-mist">
+                            State Management with Redux Toolkit
+                        </h2>
+
+                        <p className="mt-5 leading-8 text-muted">
+                            I used Redux Toolkit to manage application state
+                            shared across screens. Separating authentication,
+                            shopping cart and order data into feature-specific
+                            slices kept state updates predictable and reduced
+                            the need to pass data through multiple components.
+                        </p>
+
+                        <div className="mt-8 grid gap-4 md:grid-cols-3">
+                            {[
+                                {
+                                    title: "Authentication",
+                                    file: "authSlice.js",
+                                    state: "user · token",
+                                    description:
+                                        "Stores the signed-in user and authentication token. Supports sign-in, profile updates and sign-out.",
+                                },
+                                {
+                                    title: "Shopping Cart",
+                                    file: "cartSlice.js",
+                                    state: "items",
+                                    description:
+                                        "Manages product quantities, removes items when quantities reach zero and supports replacing or clearing cart contents.",
+                                },
+                                {
+                                    title: "Orders",
+                                    file: "ordersSlice.js",
+                                    state: "orders",
+                                    description:
+                                        "Stores the current user's orders and supports clearing order data when required.",
+                                },
+                            ].map((slice) => (
+                                <article
+                                    key={slice.title}
+                                    className="rounded-xl border border-seafoam/20 bg-forest-teal/30 p-6"
+                                >
+                                    <h3 className="font-semibold text-seafoam">
+                                        {slice.title}
+                                    </h3>
+
+                                    <p className="mt-2 font-mono text-xs text-muted">
+                                        {slice.file}
+                                    </p>
+
+                                    <p className="mt-4 text-sm font-medium text-soft-mist">
+                                        State: {slice.state}
+                                    </p>
+
+                                    <p className="mt-3 text-sm leading-7 text-muted">
+                                        {slice.description}
+                                    </p>
+                                </article>
+                            ))}
+                        </div>
+
+                        <h3 className="mt-12 text-lg font-semibold text-soft-mist">
+                            Example: Cart Quantity Management
+                        </h3>
+
+                        <p className="mt-4 leading-8 text-muted">
+                            The cart reducer checks whether a product already
+                            exists before adding it. Existing products have
+                            their quantity increased, while new products
+                            are inserted with an initial quantity of one.
+                        </p>
+
+                        <div className="mt-6 overflow-x-auto rounded-xl border border-seafoam/20 bg-forest p-5">
+    <pre className="text-sm leading-7 text-seafoam">
+      <code>{`addToCart: (state, action) => {
+  const product = action.payload;
+  const existingItem = state.items.find(
+    (item) => item.id === product.id
+  );
+
+  if (existingItem) {
+    existingItem.quantity += 1;
+  } else {
+    state.items.push({
+      ...product,
+      quantity: 1,
+    });
+  }
+},`}</code>
+    </pre>
+                        </div>
+
+                        <p className="mt-4 text-sm leading-7 text-muted">
+                            Excerpt from my cartSlice.js implementation.
+                            Redux Toolkit uses Immer internally, allowing
+                            reducers to express updates using mutable-looking
+                            syntax while preserving immutable state updates.
+                        </p>
+
+                        <div className="mt-8 rounded-xl border border-seafoam/20 bg-forest-teal/30 p-6">
+                            <h3 className="font-semibold text-seafoam">
+                                Engineering Consideration
+                            </h3>
+
+                            <p className="mt-3 text-sm leading-7 text-muted">
+                                Redux manages the application&apos;s in-memory state,
+                                while the backend stores user-specific shopping
+                                data. Keeping these representations consistent
+                                requires coordinating API responses with Redux
+                                updates, particularly when users sign in, sign
+                                out or change cart quantities.
+                            </p>
+                        </div>
+                    </section>
                 </div>
             </div>
         </main>
