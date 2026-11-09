@@ -444,6 +444,163 @@ if (cartResult.items) {
                             </p>
                         </div>
                     </section>
+
+                    <section>
+                        <h2 className="text-2xl font-bold text-soft-mist">
+                            Cart Synchronisation & Order Lifecycle
+                        </h2>
+
+                        <p className="mt-5 leading-8 text-muted">
+                            The shopping workflow coordinates local Redux state
+                            with server-side cart and order data. Cart changes
+                            update the interface immediately, while API requests
+                            persist those changes for the authenticated user.
+                        </p>
+
+                        <div className="mt-8 grid gap-4 md:grid-cols-4">
+                            {[
+                                {
+                                    number: "01",
+                                    title: "Add to Cart",
+                                    detail: "Products and quantities are managed in Redux.",
+                                },
+                                {
+                                    number: "02",
+                                    title: "Synchronise",
+                                    detail: "Cart quantities are converted and sent to the API.",
+                                },
+                                {
+                                    number: "03",
+                                    title: "Checkout",
+                                    detail: "An order is created and the cart is cleared.",
+                                },
+                                {
+                                    number: "04",
+                                    title: "Track Orders",
+                                    detail: "Orders progress from new to paid to delivered.",
+                                },
+                            ].map((step) => (
+                                <article
+                                    key={step.number}
+                                    className="rounded-xl border border-seafoam/20 bg-forest-teal/30 p-5"
+                                >
+                                    <p className="font-mono text-sm font-bold text-seafoam">
+                                        {step.number}
+                                    </p>
+                                    <h3 className="mt-3 font-semibold text-soft-mist">
+                                        {step.title}
+                                    </h3>
+                                    <p className="mt-3 text-sm leading-7 text-muted">
+                                        {step.detail}
+                                    </p>
+                                </article>
+                            ))}
+                        </div>
+
+                        <h3 className="mt-12 text-lg font-semibold text-soft-mist">
+                            Optimistic Cart Updates
+                        </h3>
+
+                        <p className="mt-4 leading-8 text-muted">
+                            When a user changes a product quantity, the
+                            application first dispatches a Redux action,
+                            then sends the updated cart to the backend.
+                            This provides immediate interface feedback
+                            without waiting for the network response.
+                        </p>
+
+                        <div className="mt-6 overflow-x-auto rounded-xl border border-seafoam/20 bg-forest p-5">
+    <pre className="text-sm leading-7 text-seafoam">
+      <code>{`async function handleIncrease(itemId) {
+  const updatedCart = cartItems.map((item) =>
+    item.id === itemId
+      ? { ...item, quantity: item.quantity + 1 }
+      : item,
+  );
+
+  dispatch(increaseQuantity(itemId));
+  await updateCart(token, toServerCart(updatedCart));
+}`}</code>
+    </pre>
+                        </div>
+
+                        <p className="mt-4 text-sm leading-7 text-muted">
+                            Excerpt from ShoppingCartScreen.js. The quantity
+                            change is applied locally before the server
+                            confirms that the cart was updated.
+                        </p>
+
+                        <h3 className="mt-12 text-lg font-semibold text-soft-mist">
+                            Checkout and Order Processing
+                        </h3>
+
+                        <p className="mt-4 leading-8 text-muted">
+                            Checkout submits the current cart items to the
+                            order API. After successful order creation,
+                            the application clears the Redux cart and
+                            sends an empty cart to the backend.
+                        </p>
+
+                        <div className="mt-6 rounded-xl border border-seafoam/20 bg-forest-teal/30 p-6">
+                            <p className="text-sm font-semibold uppercase tracking-widest text-seafoam">
+                                Order Status
+                            </p>
+
+                            <div className="mt-5 flex flex-wrap items-center gap-3">
+                                {["New", "Paid", "Delivered"].map((status, index) => (
+                                    <div key={status} className="flex items-center gap-3">
+                                        {index > 0 && (
+                                            <span aria-hidden="true" className="text-seafoam">
+              →
+            </span>
+                                        )}
+                                        <span className="rounded-lg border border-seafoam/30 bg-forest px-4 py-2 text-sm font-semibold text-soft-mist">
+            {status}
+          </span>
+                                    </div>
+                                ))}
+                            </div>
+
+                            <p className="mt-5 text-sm leading-7 text-muted">
+                                The Orders screen retrieves saved orders from
+                                the backend. Users can mark new orders as paid
+                                and paid orders as received. Each successful
+                                status update triggers a fresh API request
+                                to reload the order list.
+                            </p>
+                        </div>
+
+                        <h3 className="mt-12 text-lg font-semibold text-soft-mist">
+                            Engineering Trade-offs
+                        </h3>
+
+                        <div className="mt-6 grid gap-4 sm:grid-cols-2">
+                            <article className="rounded-xl border border-seafoam/20 bg-forest-teal/30 p-6">
+                                <h4 className="font-semibold text-seafoam">
+                                    Immediate Feedback
+                                </h4>
+                                <p className="mt-3 text-sm leading-7 text-muted">
+                                    Updating Redux before the API response makes
+                                    cart interactions feel responsive. However,
+                                    a failed request could leave the displayed
+                                    cart inconsistent with the server.
+                                </p>
+                            </article>
+
+                            <article className="rounded-xl border border-seafoam/20 bg-forest-teal/30 p-6">
+                                <h4 className="font-semibold text-seafoam">
+                                    Reliable Synchronisation
+                                </h4>
+                                <p className="mt-3 text-sm leading-7 text-muted">
+                                    A production-oriented improvement would
+                                    handle failed cart updates with rollback
+                                    or server-state reconciliation, and prevent
+                                    overlapping requests from overwriting
+                                    newer cart changes.
+                                </p>
+                            </article>
+                        </div>
+                    </section>
                 </div>
             </div>
         </main>
