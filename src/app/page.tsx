@@ -58,9 +58,11 @@ export default function Home() {
               </h2>
 
               <p className="mt-6 max-w-xl text-base leading-8 text-muted sm:text-lg">
-                Computer Science graduate building practical, secure and
-                user-focused applications. Interested in full-stack engineering,
-                data-driven interfaces and solving meaningful problems.
+                Computer Science graduate focused on full-stack software
+                engineering, with a particular interest in Java, React and
+                building reliable, user-focused applications. I enjoy
+                understanding complex systems and turning challenging
+                problems into practical software.
               </p>
 
               <div className="mt-10 flex flex-wrap gap-4">
@@ -142,7 +144,7 @@ export default function Home() {
         <footer className="border-t border-white/10 px-6 py-8">
           <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-4">
             <p className="text-sm text-muted">
-              © 2026 Erin Green
+              &copy; 2026 Erin Green
             </p>
             <a
                 href="https://github.com/ErinGreen5327955"
