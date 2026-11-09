@@ -277,6 +277,173 @@ export default function FakeStoreProjectPage() {
                             </p>
                         </div>
                     </section>
+
+                    <section>
+                        <h2 className="text-2xl font-bold text-soft-mist">
+                            Authentication & API Integration
+                        </h2>
+
+                        <p className="mt-5 leading-8 text-muted">
+                            I implemented sign-up, sign-in, profile updates
+                            and sign-out using the course-provided REST API.
+                            Authentication state is managed through Redux,
+                            allowing the navigation structure to respond to
+                            whether a user is signed in.
+                        </p>
+
+                        <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                            {[
+                                {
+                                    title: "Authentication",
+                                    endpoint: "POST /users/signin",
+                                    description:
+                                        "Submits credentials, receives user details and an authentication token, then updates Redux state.",
+                                },
+                                {
+                                    title: "Cart Restoration",
+                                    endpoint: "GET /cart",
+                                    description:
+                                        "Retrieves the signed-in user's saved cart and converts server item counts into client-side quantities.",
+                                },
+                                {
+                                    title: "Profile Updates",
+                                    endpoint: "POST /users/update",
+                                    description:
+                                        "Sends an authenticated request to update the user's name or password, then updates the displayed profile.",
+                                },
+                                {
+                                    title: "Sign Out",
+                                    endpoint: "Local state reset",
+                                    description:
+                                        "Clears authentication, cart and order state to prevent one user's data remaining visible after sign-out.",
+                                },
+                            ].map((feature) => (
+                                <article
+                                    key={feature.title}
+                                    className="rounded-xl border border-seafoam/20 bg-forest-teal/30 p-6"
+                                >
+                                    <h3 className="font-semibold text-seafoam">
+                                        {feature.title}
+                                    </h3>
+
+                                    <p className="mt-2 font-mono text-xs text-soft-mist">
+                                        {feature.endpoint}
+                                    </p>
+
+                                    <p className="mt-4 text-sm leading-7 text-muted">
+                                        {feature.description}
+                                    </p>
+                                </article>
+                            ))}
+                        </div>
+
+                        <h3 className="mt-12 text-lg font-semibold text-soft-mist">
+                            Sign-In Workflow
+                        </h3>
+
+                        <p className="mt-4 leading-8 text-muted">
+                            After a successful sign-in request, the application
+                            stores the returned user and token in Redux. It then
+                            retrieves the user&apos;s server-side cart and transforms
+                            the response into the format expected by the mobile
+                            application&apos;s cart slice.
+                        </p>
+
+                        <div className="mt-6 overflow-x-auto rounded-xl border border-seafoam/20 bg-forest p-5">
+    <pre className="text-sm leading-7 text-seafoam">
+      <code>{`const result = await signInUser(email, password);
+
+dispatch(
+  signInSuccess({
+    user: {
+      id: result.id,
+      name: result.name,
+      email: result.email,
+    },
+    token: result.token,
+  }),
+);
+
+const cartResult = await getCart(result.token);
+
+if (cartResult.items) {
+  dispatch(
+    setCartItems(fromServerCart(cartResult.items))
+  );
+}`}</code>
+    </pre>
+                        </div>
+
+                        <p className="mt-4 text-sm leading-7 text-muted">
+                            Adapted excerpt from AuthScreen.js. The same
+                            submission handler also supports registration,
+                            with loading feedback and error alerts.
+                        </p>
+
+                        <h3 className="mt-12 text-lg font-semibold text-soft-mist">
+                            Client–Server Data Transformation
+                        </h3>
+
+                        <p className="mt-4 leading-8 text-muted">
+                            The backend represents cart quantities using
+                            a count property, while the React Native
+                            application uses quantity. I implemented
+                            conversion functions to keep these representations
+                            separate rather than coupling the Redux cart
+                            directly to the server&apos;s data format.
+                        </p>
+
+                        <div className="mt-6 grid gap-4 sm:grid-cols-2">
+                            <div className="rounded-xl border border-seafoam/20 bg-forest p-6">
+                                <h4 className="font-semibold text-seafoam">
+                                    Server Representation
+                                </h4>
+                                <pre className="mt-4 text-sm leading-7 text-soft-mist">
+        <code>{`{
+  id: 12,
+  price: 29.99,
+  count: 2
+}`}</code>
+      </pre>
+                            </div>
+
+                            <div className="rounded-xl border border-seafoam/20 bg-forest p-6">
+                                <h4 className="font-semibold text-seafoam">
+                                    Client Representation
+                                </h4>
+                                <pre className="mt-4 text-sm leading-7 text-soft-mist">
+        <code>{`{
+  id: 12,
+  price: 29.99,
+  quantity: 2
+}`}</code>
+      </pre>
+                            </div>
+                        </div>
+
+                        <p className="mt-4 text-sm leading-7 text-muted">
+                            Illustrative values using the actual field
+                            mappings from toServerCart() and fromServerCart()
+                            in serverApi.js.
+                        </p>
+
+                        <div className="mt-8 rounded-xl border border-seafoam/20 bg-forest-teal/30 p-6">
+                            <h3 className="font-semibold text-seafoam">
+                                Engineering Reflection
+                            </h3>
+
+                            <p className="mt-3 text-sm leading-7 text-muted">
+                                The sign-in workflow currently updates Redux
+                                authentication state before cart restoration
+                                completes. A more resilient implementation
+                                would handle cart-loading failures separately
+                                from authentication failures, so users receive
+                                accurate feedback and the application can
+                                retry synchronisation without requiring
+                                another sign-in.
+                            </p>
+                        </div>
+                    </section>
                 </div>
             </div>
         </main>
