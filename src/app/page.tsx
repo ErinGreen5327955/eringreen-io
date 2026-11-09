@@ -126,19 +126,99 @@ export default function Home() {
             </div>
           </section>
 
+
           <section
               id="about"
               className="border-t border-white/10 bg-forest-teal/30 px-6 py-20"
           >
             <div className="mx-auto max-w-6xl">
-              <h2 className="text-3xl font-bold">About Me</h2>
-              <p className="mt-4 max-w-2xl text-muted">
-                My background combines software engineering study with
-                experience in analytical problem-solving, leadership and
-                complex operational environments.
+              <p className="text-sm uppercase tracking-widest text-seafoam">
+                Beyond the Code
               </p>
+
+              <h2 className="mt-3 text-3xl font-bold">
+                About Me
+              </h2>
+
+              <div className="mt-8 grid gap-10 lg:grid-cols-5">
+                <div className="space-y-5 lg:col-span-3">
+                  <p className="text-base leading-8 text-soft-mist">
+                    I&apos;m a Computer Science student completing
+                    my final industry project, with a focus on
+                    full-stack software engineering and a
+                    particular interest in Java and React.
+                    I enjoy understanding how systems work,
+                    solving complex problems and building
+                    software that is both practical and
+                    thoughtfully designed.
+                  </p>
+
+                  <p className="leading-8 text-muted">
+                    Before moving into software engineering,
+                    I spent 12 years with the NSW Police Force
+                    in operational, intelligence and leadership
+                    roles. That experience developed my ability
+                    to analyse complex information, communicate
+                    clearly, collaborate across disciplines
+                    and make decisions with incomplete information.
+                  </p>
+
+                  <p className="leading-8 text-muted">
+                    I&apos;m particularly interested in software
+                    that makes complex information easier to
+                    understand and use, from data-driven
+                    interfaces to reliable backend systems.
+                    I value clear thinking, maintainable code
+                    and working with people who are curious
+                    about how things can be improved.
+                  </p>
+                </div>
+
+                <aside className="lg:col-span-2">
+                  <div className="rounded-xl border border-seafoam/20 bg-forest p-6">
+                    <h3 className="text-lg font-semibold text-seafoam">
+                      What I Bring
+                    </h3>
+
+                    <ul className="mt-5 space-y-5">
+                      {[
+                        {
+                          title: "Analytical Problem-Solving",
+                          description:
+                              "Breaking down complex information and identifying practical solutions.",
+                        },
+                        {
+                          title: "Collaborative Leadership",
+                          description:
+                              "Experience coordinating teams, communicating priorities and supporting others.",
+                        },
+                        {
+                          title: "Systems Thinking",
+                          description:
+                              "Understanding how individual components contribute to larger processes.",
+                        },
+                        {
+                          title: "Continuous Learning",
+                          description:
+                              "Building new technical skills through hands-on projects and deliberate practice.",
+                        },
+                      ].map((strength) => (
+                          <li key={strength.title}>
+                            <h4 className="font-semibold text-soft-mist">
+                              {strength.title}
+                            </h4>
+                            <p className="mt-1 text-sm leading-7 text-muted">
+                              {strength.description}
+                            </p>
+                          </li>
+                      ))}
+                    </ul>
+                  </div>
+                </aside>
+              </div>
             </div>
           </section>
+
         </main>
 
         <footer className="border-t border-white/10 px-6 py-8">
