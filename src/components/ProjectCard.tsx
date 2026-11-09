@@ -55,7 +55,8 @@ export default function ProjectCard({
 
                 <div className="mt-auto flex flex-wrap gap-5 pt-8">
                     {(project.id === "tetris" ||
-                        project.id === "algorithms") && (
+                        project.id === "algorithms" ||
+                        project.id === "fake-store") && (
                         <Link
                             href={`/projects/${project.id}`}
                             className="font-semibold text-seafoam hover:underline"
