@@ -9,8 +9,8 @@ export type SkillCategory = {
 export const skills: SkillCategory[] = [
     {
         category: "Frontend",
-        primary: ["JavaScript"],
-        proficient: ["TypeScript", "HTML", "CSS"],
+        primary: ["TypeScript"],
+        proficient: ["JavaScript", "HTML", "CSS"],
         familiar: [],
     },
     {
@@ -22,14 +22,14 @@ export const skills: SkillCategory[] = [
     {
         category: "Frameworks",
         primary: ["React", "Spring Boot"],
-        proficient: ["Expo", "React Native", "Next.js"],
-        familiar: ["Quarkus", "Spring Cloud"],
+        proficient: ["React Native", "Next.js"],
+        familiar: ["Spring Cloud"],
     },
     {
         category: "Databases",
-        primary: ["PostgresSQL"],
-        proficient: ["MongoDB", "MySQL"],
-        familiar: [],
+        primary: ["MySQL"],
+        proficient: ["PostgreSQL"],
+        familiar: ["MongoDB"],
     },
     {
         category: "Cloud",
@@ -41,12 +41,12 @@ export const skills: SkillCategory[] = [
         category: "DevOps & Tools",
         primary: ["Git", "GitHub"],
         proficient: ["Docker", "GitHub Actions"],
-        familiar: ["Kubernetes", "Terraform"],
+        familiar: ["Kubernetes"],
     },
     {
         category: "Operating Systems",
         primary: [ "Ubuntu Linux", "Windows"],
-        proficient: ["Alpine Linux", "Kali Linux"],
+        proficient: ["Kali Linux"],
         familiar: ["Mac"],
     },
 ];
