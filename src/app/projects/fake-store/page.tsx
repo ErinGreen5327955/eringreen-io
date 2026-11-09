@@ -618,6 +618,101 @@ if (cartResult.items) {
                             </article>
                         </div>
                     </section>
+
+                    <section>
+                        <h2 className="text-2xl font-bold text-soft-mist">
+                            Engineering Retrospective
+                        </h2>
+
+                        <p className="mt-5 max-w-3xl leading-8 text-muted">
+                            Building Fake Store strengthened my understanding
+                            of how mobile interfaces, shared application state
+                            and REST APIs work together. The project progressed
+                            from product browsing to a multi-screen shopping
+                            application with authentication, persistent
+                            server-side cart data and order management.
+                        </p>
+
+                        <div className="mt-8 grid gap-6 md:grid-cols-2">
+                            <article className="rounded-xl border border-seafoam/20 bg-forest-teal/30 p-6">
+                                <h3 className="text-lg font-semibold text-seafoam">
+                                    What Worked Well
+                                </h3>
+
+                                <ul className="mt-5 list-disc space-y-3 pl-5 text-sm leading-7 text-muted">
+                                    <li>
+                                        Separating authentication, cart and order
+                                        state into dedicated Redux Toolkit slices.
+                                    </li>
+                                    <li>
+                                        Using a service layer to keep API requests
+                                        separate from screen components.
+                                    </li>
+                                    <li>
+                                        Transforming server responses into the
+                                        data structures expected by the mobile UI.
+                                    </li>
+                                    <li>
+                                        Building functionality incrementally across
+                                        three milestones, from browsing to checkout.
+                                    </li>
+                                </ul>
+                            </article>
+
+                            <article className="rounded-xl border border-seafoam/20 bg-forest-teal/30 p-6">
+                                <h3 className="text-lg font-semibold text-seafoam">
+                                    What I Would Improve
+                                </h3>
+
+                                <ul className="mt-5 list-disc space-y-3 pl-5 text-sm leading-7 text-muted">
+                                    <li>
+                                        Add rollback or reconciliation when
+                                        optimistic cart updates fail.
+                                    </li>
+                                    <li>
+                                        Separate authentication success from
+                                        subsequent cart-loading errors.
+                                    </li>
+                                    <li>
+                                        Make checkout more resilient to partial
+                                        failures between order creation and
+                                        clearing the server-side cart.
+                                    </li>
+                                    <li>
+                                        Expand automated testing for reducers,
+                                        API failures and complete shopping flows.
+                                    </li>
+                                </ul>
+                            </article>
+                        </div>
+
+                        <div className="mt-8 rounded-xl border border-seafoam/20 bg-forest p-6">
+                            <h3 className="font-semibold text-seafoam">
+                                Key Takeaway
+                            </h3>
+
+                            <p className="mt-3 leading-8 text-muted">
+                                The most valuable lesson was that managing
+                                application state involves more than updating
+                                the interface. Reliable mobile applications
+                                also need to account for asynchronous requests,
+                                differences between client and server data,
+                                and the possibility of partial failures.
+                            </p>
+                        </div>
+
+                        <p className="mt-6 text-sm leading-7 text-muted">
+    <span className="font-semibold text-soft-mist">
+      Project scope:
+    </span>{" "}
+                            I developed the React Native application from
+                            scratch, including its screens, navigation,
+                            Redux state management and API integration.
+                            The Node.js REST API backend was supplied
+                            as part of the university coursework.
+                        </p>
+                    </section>
+
                 </div>
             </div>
         </main>
