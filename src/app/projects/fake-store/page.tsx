@@ -2,6 +2,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import FakeStoreArchitecture from "@/components/FakeStoreArchitecture";
+import FakeStoreGallery from "@/components/FakeStoreGallery";
 
 export const metadata: Metadata = {
     title: "React Native Fake Store | Erin Green",
@@ -136,6 +137,22 @@ export default function FakeStoreProjectPage() {
                             ))}
                         </div>
                     </section>
+
+                    <section>
+                        <h2 className="text-2xl font-bold text-soft-mist">
+                            Application Screenshots
+                        </h2>
+
+                        <p className="mt-5 mb-8 max-w-3xl leading-8 text-muted">
+                            Screenshots from the completed React Native
+                            application, illustrating the shopping journey
+                            from browsing products through cart management,
+                            authentication and order processing.
+                        </p>
+
+                        <FakeStoreGallery />
+                    </section>
+
 
                     <section>
                         <h2 className="text-2xl font-bold text-soft-mist">
