@@ -1,6 +1,7 @@
 
 import Link from "next/link";
 import type { Metadata } from "next";
+import FakeStoreArchitecture from "@/components/FakeStoreArchitecture";
 
 export const metadata: Metadata = {
     title: "React Native Fake Store | Erin Green",
@@ -133,6 +134,32 @@ export default function FakeStoreProjectPage() {
                                     </p>
                                 </article>
                             ))}
+                        </div>
+                    </section>
+
+                    <section>
+                        <h2 className="text-2xl font-bold text-soft-mist">
+                            Application Architecture
+                        </h2>
+
+                        <p className="mt-5 leading-8 text-muted">
+                            I organised the application into separate screens,
+                            navigation, Redux state management and API services.
+                            This structure separates interface responsibilities
+                            from shared application state and communication
+                            with external systems.
+                        </p>
+
+                        <p className="mt-4 leading-8 text-muted">
+                            Product information is retrieved from the public
+                            Fake Store API, while authentication, shopping carts
+                            and orders use the course-provided backend.
+                            Dedicated service modules centralise the requests
+                            and response handling for each API.
+                        </p>
+
+                        <div className="mt-8">
+                            <FakeStoreArchitecture />
                         </div>
                     </section>
                 </div>
